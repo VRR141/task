@@ -54,38 +54,26 @@ public class JoinAlgo {
     private void secondHalfJoinLines() {
         TreeSet<Integer> localSet = new TreeSet<>(set);
         int stop = (1 + set.size()) / 2;
-
         int previous = 1;
-
         while (localSet.size() >= stop) {
-
             int lowQuantity = localSet.pollFirst();
-
             List<Line> basic = map.get(lowQuantity);
             List<Line> lowList = map.get(previous);
-
             previous = lowQuantity;
-
             if (lowQuantity > previous) {
                 basic = map.get(lowQuantity);
                 lowList = map.get(lowQuantity);
             }
-
             ArrayList<String> mock = new ArrayList<>();
             for (int i = 0; i < lineSize; i++){
                 mock.add(null);
             }
             Line resultLine = new Line(mock);
-
-
             for (Line basicLine: basic){
-
                 for (Line previousLine: lowList){
-
                     if (basicLine == previousLine){
                         continue;
                     }
-
                     if (basicLine.getElementQuantity() > previousLine.getElementQuantity()){
                         Line temp = JoinLine.stackLines(basicLine, previousLine);
                         int needForMerge = lineSize - temp.getElementQuantity();
@@ -98,7 +86,6 @@ public class JoinAlgo {
                                 }
                             }
                         }
-
                     }
                     else {
                         Line temp = JoinLine.stackLines(basicLine, previousLine);
@@ -117,29 +104,18 @@ public class JoinAlgo {
 
     private void halfJoinLines() {
         int stop = set.size() / 2;
-
         TreeSet<Integer> localSet = new TreeSet<>(set);
-
         while (localSet.size() > stop) {
-
             int targetQuantity = localSet.pollLast();
-
             int quantityForMerge = lineSize - targetQuantity;
-
             List<Line> targetList = map.get(targetQuantity);
-
             List<Line> listForMerge = map.get(quantityForMerge);
-
             for (Line targetLine : targetList) {
-
                 for (Line forMergeLine : listForMerge) {
-
                     if (targetLine == forMergeLine) {
                         continue;
                     }
-
                     Line resultLine = JoinLine.stackLines(targetLine, forMergeLine);
-
                     if (resultLine.getElementQuantity() == lineSize) {
                         result.add(resultLine);
                     }
@@ -159,5 +135,4 @@ public class JoinAlgo {
             }
         }
     }
-
 }

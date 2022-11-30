@@ -37,7 +37,6 @@ public class WriteJson {
             file.createNewFile();
         }
         String json = getJson(setLine);
-
         try( FileWriter writer = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(writer)) {
             bw.write(json);

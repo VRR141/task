@@ -7,8 +7,6 @@ import java.util.*;
 
 @JsonFormat(shape=JsonFormat.Shape.ARRAY)
 public class Line {
-
-
     private List<String> line;
 
     @JsonIgnore
